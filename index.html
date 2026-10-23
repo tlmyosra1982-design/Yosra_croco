@@ -1,195 +1,127 @@
 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#191123">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#68468b">
 <title>YOSRA — Halloween magique</title>
 <style>
 :root{
-  --bg:#191123;
-  --panel:#251a34;
-  --panel2:#30213f;
-  --cream:#fff5e7;
-  --muted:#d6c8df;
-  --orange:#ff9e43;
-  --gold:#ffda8a;
-  --purple:#9c70ce;
-  --green:#9de3b0;
-  --red:#ffaaa8;
+  --cream:#fff8ec;--paper:#fffdf8;--purple:#68468b;
+  --purple2:#9272b2;--lavender:#eadcf5;--deep:#30203f;
+  --orange:#ff9d42;--gold:#ffda70;--ink:#382b43;
+  --muted:#82748b;--green:#3c8047;--red:#a64238;
 }
 *{box-sizing:border-box}
 body{
-  margin:0;
-  min-height:100vh;
-  color:var(--cream);
-  background:
-    radial-gradient(ellipse at top,#39234d 0%,transparent 48%),
-    linear-gradient(160deg,#191123,#21152d 60%,#120d1b);
-  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  margin:0;color:var(--ink);font-family:system-ui,"Segoe UI",Tahoma,sans-serif;
+  background:radial-gradient(ellipse at 8% 5%,#e9dcf5,transparent 35%),
+  radial-gradient(ellipse at 92% 30%,#ffe4c6,transparent 30%),
+  linear-gradient(145deg,#fff9ef,#f3e8f8 60%,#fff2e2);
+  min-height:100vh
 }
-button,select{font:inherit}
-button{cursor:pointer;touch-action:manipulation}
-button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+button:disabled{opacity:.6;cursor:not-allowed}
+.app{max-width:1000px;margin:auto;padding:16px 12px 35px}
 header{
-  text-align:center;
-  padding:25px 15px 18px;
+  padding:25px;border-radius:26px;color:#fff;
+  background:linear-gradient(125deg,#30203f,#68468b 65%,#9876b6);
+  box-shadow:0 12px 32px #4d32631a
 }
-.brand{
-  color:var(--gold);
-  font-size:.76rem;
-  font-weight:800;
-  letter-spacing:4px;
-}
-h1{
-  font-size:clamp(1.8rem,7vw,2.7rem);
-  line-height:1.2;
-  margin:10px 0;
-}
-.subtitle{color:var(--muted);font-size:.94rem}
-.stats{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:15px auto 0;
-}
-.stat{
-  background:#ffffff0c;
-  border:1px solid #ffffff20;
-  border-radius:15px;
-  padding:8px 14px;
-  font-size:.9rem;
-}
-.stat strong{color:var(--gold)}
-main{width:min(760px,100%);margin:auto;padding:0 14px 35px}
-.tabs{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:7px;
-  margin:12px 0 16px;
-}
-.tab{
-  border:1px solid #ffffff22;
-  background:#ffffff0a;
-  color:var(--cream);
-  border-radius:13px;
-  padding:12px 5px;
-  font-weight:700;
-  font-size:.85rem;
-}
-.tab.active{
-  background:linear-gradient(135deg,#7e4ca8,#51316f);
-  border-color:var(--gold);
-  color:white;
-}
-.panel{
-  display:none;
-  background:linear-gradient(145deg,#2c203b,#21172d);
-  border:1px solid #ffffff1b;
-  border-radius:22px;
-  padding:18px;
-  box-shadow:0 14px 35px #0002;
-}
+.brand{color:#ffe0ad;font-weight:900;letter-spacing:2px;font-size:.8rem}
+h1{font-size:clamp(1.8rem,5vw,2.8rem);margin:12px 0 8px}
+header p{line-height:1.7;margin:0;color:#f5eafc}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chips span{background:#ffffff18;border:1px solid #ffffff35;border-radius:30px;padding:7px 11px;font-size:.8rem}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}
+.tab{border:1px solid #dfd0e9;background:#fffaf4;color:var(--purple);border-radius:15px;padding:12px 5px;font-weight:850}
+.tab span{display:block;font-size:1.3rem;margin-bottom:3px}
+.tab.active{background:var(--purple);color:#fff}
+.panel{display:none}
 .panel.active{display:block}
-h2{font-size:1.35rem;margin:0 0 8px}
-.intro{color:var(--muted);line-height:1.7;margin:0 0 17px}
-.pumpkin-stage{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:200px;
-  margin:12px 0;
-  position:relative;
-}
-.pumpkin-svg{width:min(230px,65vw);filter:drop-shadow(0 12px 15px #0005)}
-.btn{
-  border:0;
-  border-radius:13px;
-  padding:12px 16px;
-  background:linear-gradient(135deg,var(--orange),#e8782d);
-  color:#29162a;
-  font-weight:800;
-}
-.btn.secondary{
-  background:#ffffff12;
-  color:var(--cream);
-  border:1px solid #ffffff2c;
-}
-.btn.purple{
-  background:linear-gradient(135deg,#a77bd6,#70439d);
-  color:white;
-}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
-.question{
-  font-size:1.16rem;
-  font-weight:750;
-  line-height:1.6;
-  margin:15px 0;
-}
-.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.option{
-  min-height:58px;
-  border:1px solid #ffffff24;
-  border-radius:14px;
-  background:#ffffff0b;
-  color:var(--cream);
-  padding:12px;
-  font-weight:650;
-}
-.option.correct{border-color:var(--green);background:#24583d55}
-.option.wrong{border-color:var(--red);background:#7a303055}
-.feedback{
-  min-height:30px;
-  margin-top:13px;
-  font-weight:700;
-  line-height:1.5;
-}
-.progress{
-  height:7px;background:#ffffff15;border-radius:20px;overflow:hidden;margin:15px 0;
-}
-.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--gold));transition:width .25s}
-.small{font-size:.88rem;color:var(--muted)}
-.decor-grid{display:grid;gap:15px}
-.control-row{display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:center}
-.control-row label{font-size:.92rem;color:var(--muted)}
-select{
-  width:100%;padding:11px;border-radius:11px;
-  color:var(--cream);background:#30213f;border:1px solid #ffffff2c;
-}
-select option{background:#30213f}
-.memory-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:15px}
-.memory-card{
-  min-height:86px;border:1px solid #ffffff22;border-radius:13px;
-  background:#392748;color:var(--cream);font-size:1.9rem;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:6px;gap:4px;
-}
-.memory-card .word{font-size:.72rem;overflow-wrap:anywhere}
-.memory-card.matched{border-color:var(--green);background:#24583d55}
-.memory-card.revealed{border-color:var(--gold)}
-.badge{
-  display:none;text-align:center;padding:16px;margin-top:15px;
-  border:1px solid var(--gold);border-radius:16px;color:var(--gold);
-  background:#ffda8a0c;font-weight:800;
-}
-.badge.show{display:block}
-footer{text-align:center;color:#b9a9c6;font-size:.8rem;padding:20px}
-.leaf{
-  position:fixed;top:-30px;pointer-events:none;z-index:20;
-  animation:fall linear forwards;font-size:24px;
-}
-@keyframes fall{
-  to{transform:translate3d(var(--drift),110vh,0) rotate(620deg);opacity:.2}
-}
-@media(max-width:390px){
-  .panel{padding:14px}
-  .memory-grid{gap:5px}
-  .memory-card{min-height:75px}
-  .tabs{gap:5px}
-  .tab{font-size:.76rem}
+.card{background:linear-gradient(145deg,#fffdf8,#fff8ed);border:1px solid #e8dced;border-radius:22px;padding:19px;margin-bottom:14px;box-shadow:0 10px 28px #4d326313}
+.heading{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:16px}
+.heading h2{margin:0 0 5px;color:var(--deep);font-size:1.35rem}
+.heading p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.6}
+.badge{background:var(--lavender);color:var(--purple);border-radius:30px;padding:7px 10px;font-size:.75rem;font-weight:850;white-space:nowrap}
+.levels{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:15px}
+.level{border:1px solid #dfd0e9;border-radius:12px;padding:10px 13px;background:#f0e5f7;color:var(--purple);font-weight:850}
+.level.active{background:var(--purple);color:white}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.85rem;font-weight:850;color:var(--purple);margin:12px 0 8px}
+.track{height:8px;background:#e9dff0;border-radius:20px;overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,#9272b2,#ffab4e);transition:width .25s}
+.question{margin-top:16px;padding:18px;border-radius:17px;background:linear-gradient(130deg,#f1e6fa,#fff0dc);border:1px solid #e7d7ed}
+.qlevel{font-size:.75rem;font-weight:900;color:var(--purple);letter-spacing:.5px}
+.qtext{font-size:1.22rem;font-weight:850;line-height:1.55;margin:10px 0}
+.hint{color:#796984;font-size:.9rem;margin:0 0 12px}
+.primary,.secondary{border:0;border-radius:12px;padding:11px 15px;font-weight:850}
+.primary{background:linear-gradient(135deg,#ffb45e,#ff9239);color:#432b29}
+.secondary{background:#eadff3;color:var(--purple)}
+.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
+.answer{min-height:49px;text-align:left;border:1px solid #e3d5eb;border-radius:13px;background:#fffdf9;padding:12px;color:var(--ink);font-weight:750}
+.answer.correct{background:#e3f3df;border-color:#91c788;color:#286934}
+.answer.wrong{background:#ffe4df;border-color:#e9a092;color:#963b32}
+.feedback{min-height:28px;font-weight:800;font-size:.9rem;line-height:1.6;margin:12px 0}
+.score{background:#f7e5c8;color:#70451f;padding:9px 12px;border-radius:11px;font-weight:900}
+.result{text-align:center;padding:20px 8px}
+.result .emoji{font-size:3rem}
+.result h3{font-size:1.5rem;margin:8px 0}
+.result p{line-height:1.7;color:var(--muted)}
+.hidden{display:none!important}
+
+/* Pumpkin */
+.pumpkin-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stage{background:radial-gradient(ellipse at center,#fff1d4,#eee1f3);border:1px solid #e4d4e9;border-radius:20px;padding:8px}
+.stage svg{display:block;width:100%;max-height:420px}
+.caption{text-align:center;color:var(--purple);font-weight:850;font-size:.9rem}
+.group{padding:13px 0;border-bottom:1px solid #eadfed}
+.group h3{font-size:1rem;margin:0 0 9px}
+.label{display:block;font-size:.8rem;color:var(--muted);font-weight:800;margin-bottom:8px}
+.options{display:flex;flex-wrap:wrap;gap:7px}
+.opt{border:1px solid #e0d0e9;background:#fffaf4;color:var(--purple);border-radius:11px;padding:9px 10px;font-size:.82rem;font-weight:800}
+.opt.active{background:var(--purple);color:white}
+.toggle{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;background:#fff1c9;color:#694b20;border:1px solid #efd699;border-radius:13px;padding:12px;font-weight:850}
+.switch{width:42px;height:24px;background:#c4b5ca;border-radius:30px;padding:3px;flex-shrink:0}
+.switch:after{content:"";display:block;width:18px;height:18px;background:white;border-radius:50%;transition:transform .2s}
+.toggle[aria-pressed="true"] .switch{background:#d6a72e}
+.toggle[aria-pressed="true"] .switch:after{transform:translateX(18px)}
+.note{color:var(--muted);font-size:.8rem;line-height:1.6}
+@keyframes pulse{0%,100%{opacity:.65;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes flutter{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(10deg)}}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -3px}}
+#aura{transform-box:fill-box;transform-origin:center;animation:pulse 1.5s infinite}
+#wings{transform-box:fill-box;transform-origin:center;animation:flutter .5s infinite}
+#bug{animation:float 2s ease-in-out infinite}
+
+/* Memory */
+.memory-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:9px;margin-bottom:14px}
+.stats{display:flex;flex-wrap:wrap;gap:7px}
+.stat{background:#eee3f5;color:var(--purple);border-radius:10px;padding:8px 10px;font-size:.8rem;font-weight:850}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.mem{aspect-ratio:.9;min-width:0;border:1px solid #ddcce9;border-radius:13px;background:linear-gradient(140deg,#79599b,#49305f);color:white;display:grid;place-items:center;padding:5px;font-size:1.5rem}
+.mem.revealed,.mem.matched{background:linear-gradient(145deg,#fffdf8,#f0e4f7);color:var(--deep)}
+.mem.matched{box-shadow:inset 0 0 0 2px #b9d9a8}
+.mem .content{text-align:center;font-size:clamp(.7rem,2.5vw,.95rem);font-weight:850;overflow-wrap:anywhere}
+.mem .emoji{display:block;font-size:1.5rem;margin-bottom:3px}
+.vocab-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.vocab{display:flex;align-items:center;gap:9px;padding:10px;border-radius:13px;background:#f0e6f6;border:1px solid #e3d5ec}
+.vocab .ve{font-size:1.5rem}
+.vocab .words{flex:1;min-width:0}
+.vocab strong{display:block}
+.vocab small{color:var(--muted)}
+.listen{border:0;border-radius:10px;padding:9px;background:#fffaf2;color:var(--purple)}
+#celebration{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20}
+.falling{position:absolute;top:-40px;animation:fall 2.4s ease-in forwards;font-size:24px}
+@keyframes fall{to{transform:translateY(110vh) rotate(650deg);opacity:0}}
+#toast{position:fixed;z-index:30;bottom:18px;left:50%;transform:translateX(-50%);background:var(--deep);color:white;border-radius:13px;padding:12px 17px;max-width:90%;text-align:center;font-weight:800}
+footer{text-align:center;padding:18px 0 0;color:var(--muted);font-size:.8rem;line-height:1.7}
+@media(max-width:620px){
+  .card{padding:14px}.pumpkin-layout{grid-template-columns:1fr}
+  .answers{grid-template-columns:1fr}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .vocab-list{grid-template-columns:1fr}.tab{font-size:.78rem}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -197,628 +129,417 @@ footer{text-align:center;color:#b9a9c6;font-size:.8rem;padding:20px}
 </style>
 </head>
 <body>
+<div class="app">
 <header>
-  <div class="brand">YOSRA × BEAU JOUR</div>
-  <h1>🎃 Halloween magique</h1>
-  <p class="subtitle">Une aventure française pleine de surprises !</p>
-  <div class="stats">
-    <div class="stat">⭐ Score : <strong id="score">0</strong></div>
-    <div class="stat">🎯 Activités : <strong id="completed">0</strong>/3</div>
-  </div>
+  <div class="brand">✦ YOSRA · FRENCH LEARNING</div>
+  <h1>Halloween magique ! 🎃</h1>
+  <p>Apprends le français avec Dino, décore ta citrouille et joue avec les mots d’Halloween.</p>
+  <div class="chips"><span>🍂 Vocabulaire</span><span>🧠 Mémoire</span><span>🎃 Créativité</span><span>🔊 Prononciation</span></div>
 </header>
 
-<main>
-  <nav class="tabs" aria-label="Activités">
-    <button class="tab active" data-tab="quiz">🎃 Le défi</button>
-    <button class="tab" data-tab="decor">✨ Ma citrouille</button>
-    <button class="tab" data-tab="memory">🧠 Memory</button>
-  </nav>
+<nav class="tabs">
+  <button class="tab active" data-panel="quiz"><span>🦖</span>Le défi de Dino</button>
+  <button class="tab" data-panel="pumpkin"><span>🎃</span>Ma citrouille</button>
+  <button class="tab" data-panel="memory"><span>🧠</span>Mémoire</button>
+</nav>
 
-  <section class="panel active" id="quiz">
-    <h2>🎃 Le défi de Dino</h2>
-    <p class="intro">Lis la question, écoute le français et choisis la bonne réponse.</p>
-    <div class="progress"><div id="quizProgress"></div></div>
-    <div class="small" id="questionNumber">Question 1 sur 5</div>
-    <div class="question" id="questionText">Qu’est-ce que Dino achète ?</div>
-    <div class="actions">
-      <button class="btn secondary" id="listenQuestion">🔊 Écouter la question</button>
+<!-- QUIZ -->
+<section class="panel active" id="quiz">
+<div class="card">
+  <div class="heading"><div><h2>🦖 Le défi de Dino</h2><p>Choisis la bonne réponse pour gagner des points !</p></div><span class="badge">+10 points</span></div>
+  <div class="levels">
+    <button class="level active" data-level="a1">⭐ A1</button>
+    <button class="level" data-level="a2">🚀 A2</button>
+  </div>
+  <div class="row"><span id="counter">Question 1 / 6</span><span id="score">🏆 Score : 0</span></div>
+  <div class="track"><div class="fill" id="progress"></div></div>
+  <div id="quizBody">
+    <div class="question">
+      <div class="qlevel" id="qlevel">NIVEAU A1</div>
+      <div class="qtext" id="qtext"></div>
+      <p class="hint" id="hint"></p>
+      <button class="secondary" id="listenQ" type="button">🔊 Écouter la question</button>
     </div>
-    <div class="options" id="answerOptions"></div>
-    <div class="feedback" id="quizFeedback" aria-live="polite"></div>
-    <div class="actions">
-      <button class="btn" id="nextQuestion" disabled>Question suivante →</button>
-      <button class="btn secondary" id="restartQuiz">↻ Recommencer</button>
-    </div>
-    <div class="badge" id="quizBadge">🏅 Bravo ! Tu es un champion d’Halloween !</div>
-  </section>
+    <div class="answers" id="answers"></div>
+    <p class="feedback" id="feedback" aria-live="polite"></p>
+    <div class="row"><span class="score" id="streak">🔥 Série : 0</span><button class="primary" id="next" disabled>Question suivante →</button></div>
+  </div>
+  <div class="result hidden" id="result" aria-live="polite">
+    <div class="emoji" id="resultEmoji">🎉</div><h3 id="resultTitle">Bravo !</h3>
+    <p id="resultText"></p><button class="primary" id="restartQuiz">↻ Recommencer le niveau</button>
+  </div>
+</div>
+</section>
 
-  <section class="panel" id="decor">
-    <h2>✨ Décore ta citrouille</h2>
-    <p class="intro">Choisis les yeux, la bouche et un accessoire. Appuie sur le haut-parleur pour écouter les mots français.</p>
-    <div class="pumpkin-stage">
-      <svg class="pumpkin-svg" viewBox="0 0 240 240" role="img" aria-label="Citrouille décorée">
-        <path d="M116 44 Q103 22 125 14 Q143 11 143 29 L137 51" fill="#557c39" stroke="#35562b" stroke-width="4"/>
-        <path d="M120 52 C72 25 31 66 28 121 C20 177 61 213 120 215 C179 213 220 177 212 121 C209 66 168 25 120 52Z" fill="#ff9e43" stroke="#db702a" stroke-width="5"/>
-        <path d="M120 53 C95 74 95 181 120 213" fill="none" stroke="#e77d2f" stroke-width="5"/>
-        <path d="M85 51 C59 76 58 173 88 201" fill="none" stroke="#e77d2f" stroke-width="4"/>
-        <path d="M155 51 C181 76 182 173 152 201" fill="none" stroke="#e77d2f" stroke-width="4"/>
-        <g id="eyes">
-          <path d="M65 104 L91 82 L98 116Z" fill="#24152a" stroke="#6e321f" stroke-width="2"/>
-          <path d="M145 116 L152 82 L178 104Z" fill="#24152a" stroke="#6e321f" stroke-width="2"/>
+<!-- PUMPKIN -->
+<section class="panel" id="pumpkin">
+<div class="card">
+  <div class="heading"><div><h2>🎃 Décore ta citrouille</h2><p>Choisis un visage et ajoute la luciole qui illumine la citrouille.</p></div><span class="badge">Atelier créatif</span></div>
+  <div class="pumpkin-layout">
+    <div>
+      <div class="stage">
+      <svg viewBox="0 0 260 300" role="img" aria-label="Citrouille décorée avec une luciole lumineuse">
+        <defs>
+          <radialGradient id="orange" cx="35%" cy="25%" r="80%"><stop stop-color="#ffcf70"/><stop offset=".5" stop-color="#ff9e36"/><stop offset="1" stop-color="#d85b17"/></radialGradient>
+          <linearGradient id="stem" x2="1" y2="1"><stop stop-color="#9dbb69"/><stop offset="1" stop-color="#425d2e"/></linearGradient>
+          <radialGradient id="glow"><stop stop-color="#fff9a8" stop-opacity=".95"/><stop offset=".4" stop-color="#ffe66b" stop-opacity=".48"/><stop offset="1" stop-color="#ffe66b" stop-opacity="0"/></radialGradient>
+          <linearGradient id="wingColor" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#c9e8e8"/></linearGradient>
+          <filter id="glowBlur" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.5"/></filter>
+        </defs>
+        <ellipse cx="130" cy="267" rx="79" ry="10" fill="#68468b" opacity=".15"/>
+        <ellipse cx="130" cy="168" rx="82" ry="91" fill="url(#orange)"/>
+        <ellipse cx="93" cy="168" rx="43" ry="85" fill="#e66c20" opacity=".55"/>
+        <ellipse cx="166" cy="168" rx="43" ry="85" fill="#d85b19" opacity=".45"/>
+        <ellipse cx="130" cy="167" rx="32" ry="90" fill="#ffb54d" opacity=".65"/>
+        <path d="M130 79C122 115 122 213 130 253M92 92C71 128 72 200 94 235M168 92C190 128 188 200 166 235" fill="none" stroke="#bd5019" stroke-width="3" opacity=".45"/>
+        <path d="M117 89Q120 67 115 51Q130 42 144 52Q139 68 145 90Z" fill="url(#stem)" stroke="#486235" stroke-width="2"/>
+        <path d="M121 56Q130 51 138 57" fill="none" stroke="#c1d78a" stroke-width="3" stroke-linecap="round"/>
+
+        <g id="eyeRound" fill="#42263c"><ellipse cx="100" cy="146" rx="10" ry="14"/><ellipse cx="160" cy="146" rx="10" ry="14"/><circle cx="103" cy="141" r="3" fill="#fff0c2"/><circle cx="163" cy="141" r="3" fill="#fff0c2"/></g>
+        <g id="eyeTriangle" fill="#42263c" style="display:none"><path d="M86 155L101 126L115 155Z"/><path d="M145 155L160 126L175 155Z"/></g>
+        <g id="eyeStar" fill="#42263c" style="display:none"><path d="M100 128L105 139L117 140L108 148L111 160L100 154L89 160L92 148L83 140L95 139Z"/><path d="M160 128L165 139L177 140L168 148L171 160L160 154L149 160L152 148L143 140L155 139Z"/></g>
+        <g id="eyeSleep" fill="none" stroke="#42263c" stroke-width="7" stroke-linecap="round" style="display:none"><path d="M84 145Q100 163 116 145"/><path d="M144 145Q160 163 176 145"/></g>
+
+        <g id="mouthSmile"><path d="M88 177Q130 224 172 177Q164 222 130 222Q96 222 88 177Z" fill="#42263c"/></g>
+        <g id="mouthSmall" style="display:none"><path d="M108 191Q130 210 152 191Q145 211 130 211Q115 211 108 191Z" fill="#42263c"/></g>
+        <ellipse id="mouthRound" cx="130" cy="195" rx="13" ry="17" fill="#42263c" style="display:none"/>
+        <g id="mouthTeeth" style="display:none"><path d="M92 180Q130 214 168 180L163 198L153 194L145 202L135 196L125 203L115 196L105 201L98 193Z" fill="#42263c"/><path d="M99 184Q130 205 161 184L157 193Q130 212 103 193Z" fill="#fff3d4"/></g>
+
+        <!-- Luciole : insecte identifiable avec ailes, antennes et abdomen lumineux -->
+        <g id="firefly">
+          <circle id="aura" cx="184" cy="171" r="37" fill="url(#glow)"/>
+          <g id="bug">
+            <g id="wings">
+              <ellipse cx="176" cy="161" rx="7" ry="12" transform="rotate(-32 176 161)" fill="url(#wingColor)" stroke="#799d9a"/>
+              <ellipse cx="188" cy="160" rx="7" ry="12" transform="rotate(32 188 160)" fill="url(#wingColor)" stroke="#799d9a"/>
+            </g>
+            <path d="M180 164Q177 158 174 155M184 164Q190 158 192 155" fill="none" stroke="#493043" stroke-width="1.7" stroke-linecap="round"/>
+            <ellipse cx="182" cy="170" rx="7" ry="10" fill="#3f3548"/>
+            <ellipse cx="182" cy="178" rx="5.5" ry="7" fill="#f6d74c" stroke="#9b7926"/>
+            <ellipse cx="182" cy="178" rx="3" ry="4.5" fill="#fffbd0"/>
+            <circle cx="180" cy="168" r="1.6" fill="white"/>
+            <path d="M177 177L172 183M187 177L191 183" fill="none" stroke="#493043" stroke-width="1.4" stroke-linecap="round"/>
+          </g>
+          <text x="184" y="205" text-anchor="middle" font-size="9" font-weight="800" fill="#704a22">luciole</text>
         </g>
-        <g id="mouth">
-          <path d="M70 145 Q120 192 170 145 Q145 204 120 187 Q95 204 70 145Z" fill="#24152a" stroke="#6e321f" stroke-width="3"/>
-        </g>
-        <g id="accessory">
-          <path d="M61 80 L179 80 L160 67 L80 67Z" fill="#30213f" stroke="#171020" stroke-width="3"/>
-          <path d="M85 68 L100 29 Q120 13 140 29 L155 68Z" fill="#30213f" stroke="#171020" stroke-width="3"/>
-          <path d="M97 49 L146 49" stroke="#ffda8a" stroke-width="7"/>
-          <path d="M75 82 L165 82" stroke="#ffda8a" stroke-width="4"/>
-        </g>
-        <g id="glasses" fill="none" stroke="#30213f" stroke-width="5" style="display:none">
-          <circle cx="82" cy="105" r="21"/><circle cx="158" cy="105" r="21"/>
-          <path d="M103 105 L137 105 M60 100 L47 94 M180 100 L193 94"/>
-        </g>
-        <g id="glow" style="display:none">
-          <circle cx="120" cy="132" r="61" fill="#ffda8a" opacity=".16"/>
-          <path d="M115 127 Q120 118 125 127 Q132 136 120 145 Q108 136 115 127Z" fill="#fff4b0"/>
-        </g>
+
+        <g id="hat" style="display:none"><path d="M73 102L112 52L145 104Z" fill="#4b315e" stroke="#2e1c3c" stroke-width="2"/><path d="M63 104Q106 91 153 105Q109 117 63 104Z" fill="#4b315e" stroke="#2e1c3c" stroke-width="2"/><path d="M90 81L119 82L128 98L82 98Z" fill="#ff9d42"/></g>
+        <g id="glasses" fill="none" stroke="#51324e" stroke-width="4" style="display:none"><circle cx="100" cy="147" r="17"/><circle cx="160" cy="147" r="17"/><path d="M117 147Q130 139 143 147"/></g>
+        <g id="bow" style="display:none"><path d="M103 88Q79 63 80 91Q81 105 103 96Z" fill="#d95c83" stroke="#813454" stroke-width="2"/><path d="M105 88Q130 63 128 91Q127 105 105 96Z" fill="#f17ca0" stroke="#813454" stroke-width="2"/><circle cx="104" cy="93" r="7" fill="#ffd0db" stroke="#813454" stroke-width="2"/></g>
       </svg>
-    </div>
-    <div class="decor-grid">
-      <div class="control-row">
-        <label for="eyeChoice">Les yeux</label>
-        <select id="eyeChoice">
-          <option value="triangle">Yeux triangulaires</option>
-          <option value="round">Yeux ronds</option>
-          <option value="sleepy">Yeux malicieux</option>
-        </select>
       </div>
-      <div class="control-row">
-        <label for="mouthChoice">La bouche</label>
-        <select id="mouthChoice">
-          <option value="smile">Un sourire</option>
-          <option value="zigzag">Une bouche en zigzag</option>
-          <option value="o">Une bouche ronde</option>
-        </select>
-      </div>
-      <div class="control-row">
-        <label for="accessoryChoice">Accessoire</label>
-        <select id="accessoryChoice">
-          <option value="hat">Un chapeau magique</option>
-          <option value="glasses">Des lunettes</option>
-          <option value="glow">Une luciole lumineuse</option>
-          <option value="none">Aucun accessoire</option>
-        </select>
-      </div>
+      <p class="caption" id="pumpkinCaption">Ma citrouille magique et sa luciole ✨</p>
     </div>
-    <div class="actions">
-      <button class="btn" id="applyDecor">✨ Appliquer</button>
-      <button class="btn secondary" id="sayDecor">🔊 Écouter les mots</button>
+    <div>
+      <div class="group"><h3>👀 Les yeux</h3><span class="label">Choisis un regard</span><div class="options" id="eyesOptions">
+        <button class="opt active" data-eye="Round">● Ronds</button><button class="opt" data-eye="Triangle">▲ Triangles</button><button class="opt" data-eye="Star">⭐ Étoiles</button><button class="opt" data-eye="Sleep">😴 Endormis</button>
+      </div></div>
+      <div class="group"><h3>😊 La bouche</h3><span class="label">Choisis une expression</span><div class="options" id="mouthOptions">
+        <button class="opt active" data-mouth="Smile">Grand sourire</button><button class="opt" data-mouth="Small">Petit sourire</button><button class="opt" data-mouth="Round">Surprise</button><button class="opt" data-mouth="Teeth">Dents</button>
+      </div></div>
+      <div class="group"><h3>🎩 Un accessoire</h3><span class="label">Ajoute une touche spéciale</span><div class="options" id="accessoryOptions">
+        <button class="opt active" data-accessory="none">Sans</button><button class="opt" data-accessory="hat">🎩 Chapeau</button><button class="opt" data-accessory="glasses">👓 Lunettes</button><button class="opt" data-accessory="bow">🎀 Nœud</button>
+      </div></div>
+      <div class="group"><h3>✨ La luciole magique</h3><button class="toggle" id="fireflyToggle" aria-pressed="true"><span id="fireflyText">✨ Luciole allumée</span><span class="switch"></span></button><p class="note">La luciole est un petit insecte visible dans la citrouille. Sa lumière vient de son abdomen lumineux.</p></div>
+      <button class="primary" id="resetPumpkin">↻ Recommencer la décoration</button>
     </div>
-    <div class="feedback" id="decorFeedback" aria-live="polite"></div>
-  </section>
+  </div>
+</div>
+</section>
 
-  <section class="panel" id="memory">
-    <h2>🧠 Memory d’Halloween</h2>
-    <p class="intro">Retourne les cartes et retrouve les quatre paires. Après une paire correcte, écoute le mot en français.</p>
-    <div class="small" id="memoryStatus">Paires trouvées : 0 sur 4</div>
-    <div class="memory-grid" id="memoryGrid"></div>
-    <div class="feedback" id="memoryFeedback" aria-live="polite"></div>
-    <div class="actions">
-      <button class="btn secondary" id="restartMemory">↻ Recommencer</button>
-    </div>
-    <div class="badge" id="memoryBadge">🏆 Excellent ! Toutes les paires sont trouvées !</div>
-  </section>
-</main>
-
-<footer>YOSRA — Apprendre le français avec imagination ✦</footer>
+<!-- MEMORY -->
+<section class="panel" id="memory">
+<div class="card">
+  <div class="heading"><div><h2>🧠 Mémoire d’Halloween</h2><p>Retourne deux cartes et retrouve les six paires.</p></div><span class="badge">+20 par paire</span></div>
+  <div class="memory-top">
+    <div class="stats"><span class="stat" id="pairs">🧩 Paires : 0 / 6</span><span class="stat" id="memScore">🏆 Score : 0</span><span class="stat" id="moves">👆 Coups : 0</span></div>
+    <button class="secondary" id="restartMemory">↻ Rejouer</button>
+  </div>
+  <div class="grid" id="memoryGrid"></div>
+  <p class="feedback" id="memFeedback" aria-live="polite">Trouve les six paires !</p>
+  <div id="vocabArea" class="hidden"><h2>📚 Mon vocabulaire</h2><p class="hint">Appuie sur 🔊 pour écouter les mots.</p><div class="vocab-list" id="vocabList"></div></div>
+</div>
+</section>
+<footer><strong>YOSRA</strong> · Apprendre le français avec imagination</footer>
+</div>
+<div id="celebration" aria-hidden="true"></div>
+<div id="toast" class="hidden" role="status"></div>
 
 <script>
 "use strict";
 
-/* YOSRA — French speech with asynchronous voice loading */
-const FrenchSpeech = (() => {
-  let frenchVoice = null;
-  let voiceLoadPending = false;
-  const synth = "speechSynthesis" in window ? window.speechSynthesis : null;
+/* Navigation */
+document.querySelectorAll(".tab").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b===btn));
+    document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===btn.dataset.panel));
+  });
+});
 
-  function findFrenchVoice() {
-    if (!synth) return null;
-    const voices = synth.getVoices();
-    return voices.find(v => /^fr[-_]fr$/i.test(v.lang))
-      || voices.find(v => /^fr([-_]|$)/i.test(v.lang))
-      || null;
+/* French speech */
+function speakFrench(text){
+  if(!("speechSynthesis" in window)){showToast("La lecture audio n’est pas disponible.");return;}
+  window.speechSynthesis.cancel();
+  const utterance=new SpeechSynthesisUtterance(text);
+  utterance.lang="fr-FR";utterance.rate=.85;utterance.pitch=1.05;
+  const voice=window.speechSynthesis.getVoices().find(v=>v.lang&&v.lang.toLowerCase().startsWith("fr"));
+  if(voice)utterance.voice=voice;
+  window.speechSynthesis.speak(utterance);
+}
+
+/* Toast */
+let toastTimer;
+function showToast(text){
+  const el=document.getElementById("toast");
+  el.textContent=text;el.classList.remove("hidden");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.classList.add("hidden"),2300);
+}
+
+/* Celebration: candy, autumn leaves and melody */
+function celebrate(){
+  const holder=document.getElementById("celebration");
+  const icons=["🍬","🍭","🍂","🍁","🍬","🍃","✨"];
+  for(let i=0;i<36;i++){
+    const el=document.createElement("span");
+    el.className="falling";
+    el.textContent=icons[Math.floor(Math.random()*icons.length)];
+    el.style.left=(Math.random()*100)+"%";
+    el.style.animationDelay=(Math.random()*.55)+"s";
+    el.style.animationDuration=(1.7+Math.random()*1.1)+"s";
+    holder.appendChild(el);
+    setTimeout(()=>el.remove(),3200);
   }
-
-  function refreshVoices() {
-    frenchVoice = findFrenchVoice();
-    return frenchVoice;
-  }
-
-  if (synth) {
-    refreshVoices();
-    synth.addEventListener("voiceschanged", refreshVoices);
-  }
-
-  function speak(text) {
-    if (!synth) {
-      showToast("La lecture audio n’est pas disponible dans ce navigateur.");
-      return;
-    }
-
-    const phrase = String(text || "").trim();
-    if (!phrase) return;
-
-    synth.cancel();
-
-    const speakWhenReady = () => {
-      frenchVoice = refreshVoices();
-
-      if (!frenchVoice) {
-        showToast("Voix française introuvable. Installe une voix française dans les réglages de synthèse vocale du téléphone.");
-        return;
-      }
-
-      const utterance = new SpeechSynthesisUtterance(phrase);
-      utterance.lang = "fr-FR";
-      utterance.voice = frenchVoice;
-      utterance.rate = 0.82;
-      utterance.pitch = 1.0;
-      utterance.onerror = () => {
-        showToast("La lecture a échoué. Vérifie les paramètres vocaux du téléphone.");
-      };
-      synth.speak(utterance);
-    };
-
-    if (refreshVoices()) {
-      speakWhenReady();
-      return;
-    }
-
-    if (voiceLoadPending) return;
-    voiceLoadPending = true;
-
-    let finished = false;
-    const onChanged = () => {
-      if (finished) return;
-      finished = true;
-      voiceLoadPending = false;
-      synth.removeEventListener("voiceschanged", onChanged);
-      speakWhenReady();
-    };
-
-    synth.addEventListener("voiceschanged", onChanged);
-
-    /* Some browsers do not fire voiceschanged if no voice is available. */
-    window.setTimeout(() => {
-      if (finished) return;
-      finished = true;
-      voiceLoadPending = false;
-      synth.removeEventListener("voiceschanged", onChanged);
-      speakWhenReady();
-    }, 1200);
-  }
-
-  return { speak };
-})();
-
-function showToast(message) {
-  const target = document.getElementById("globalToast");
-  if (!target) {
-    const toast = document.createElement("div");
-    toast.id = "globalToast";
-    toast.setAttribute("role", "status");
-    Object.assign(toast.style, {
-      position:"fixed", left:"12px", right:"12px", bottom:"18px",
-      zIndex:"1000", background:"#fff5e7", color:"#251a34",
-      padding:"13px 16px", borderRadius:"14px", boxShadow:"0 5px 25px #0007",
-      fontSize:"14px", fontWeight:"700", lineHeight:"1.5", textAlign:"center"
+  playMelody();
+}
+function playMelody(){
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC)return;
+  let ctx;
+  try{
+    ctx=new AC();
+    const notes=[523.25,659.25,783.99,1046.5];
+    notes.forEach((freq,i)=>{
+      const osc=ctx.createOscillator(),gain=ctx.createGain();
+      const start=ctx.currentTime+i*.13;
+      osc.type="sine";osc.frequency.value=freq;
+      gain.gain.setValueAtTime(.0001,start);
+      gain.gain.exponentialRampToValueAtTime(.12,start+.025);
+      gain.gain.exponentialRampToValueAtTime(.0001,start+.2);
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.start(start);osc.stop(start+.22);
     });
-    document.body.appendChild(toast);
-    toast.textContent = message;
-    window.setTimeout(() => toast.remove(), 4200);
-  } else {
-    target.textContent = message;
-  }
+    setTimeout(()=>ctx.close().catch(()=>{}),1200);
+  }catch(e){if(ctx)ctx.close().catch(()=>{});}
 }
 
-/* Tabs */
-document.querySelectorAll(".tab").forEach(button => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".tab").forEach(b => b.classList.remove("active"));
-    document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
-    button.classList.add("active");
-    document.getElementById(button.dataset.tab).classList.add("active");
-  });
-});
+/* Carefully checked A1/A2 questions.
+   Every answer index corresponds to the displayed option. */
+const questions={
+ a1:[
+  {q:"Que signifie « une luciole » ?",hint:"فارسی: کدام گزینه معنی «کرم شب‌تاب» است؟",o:["Un insecte qui brille","Un animal qui dort","Un fruit orange","Un vêtement"],a:0,why:"Une luciole est un petit insecte qui produit de la lumière."},
+  {q:"Comment dit-on « کدو تنبل » en français ?",hint:"فارسی: کدو تنبل را به فرانسوی انتخاب کن.",o:["Un fantôme","Une citrouille","Un bonbon","Une araignée"],a:1,why:"Une citrouille = کدو تنبل."},
+  {q:"Que signifie « un fantôme » ?",hint:"فارسی: معنی واژه را پیدا کن.",o:["جادوگر","خفاش","روح","آبنبات"],a:2,why:"Un fantôme = روح."},
+  {q:"Complète : La sorcière porte ___ chapeau.",hint:"فارسی: حرف تعریف نامعین مذکر را انتخاب کن.",o:["une","des","un","de"],a:2,why:"On dit : un chapeau."},
+  {q:"Quel animal vole la nuit ?",hint:"فارسی: کدام حیوان شب پرواز می‌کند؟",o:["Une chauve-souris","Une citrouille","Un bonbon","Un chapeau"],a:0,why:"Une chauve-souris = خفاش."},
+  {q:"Choisis la phrase correcte.",hint:"فارسی: به حرف تعریف و صفت توجه کن.",o:["Une petit citrouille","Un petite citrouille","Une petite citrouille","Une petits citrouille"],a:2,why:"Citrouille est féminin : une petite citrouille."}
+ ],
+ a2:[
+  {q:"Dino met la luciole dans la citrouille. Où est la luciole ?",hint:"فارسی: کرم شب‌تاب کجاست؟",o:["Sur la table","Dans la citrouille","Sous le chapeau","Devant la porte"],a:1,why:"« Dans » signifie « داخلِ »."},
+  {q:"Complète : Hier, Dino ___ sa citrouille.",hint:"فارسی: برای گذشته، passé composé را انتخاب کن.",o:["décore","a décoré","décorera","décorait demain"],a:1,why:"Hier + passé composé : a décoré."},
+  {q:"Quel est le pluriel de « un bonbon » ?",hint:"فارسی: شکل جمع اسم را انتخاب کن.",o:["des bonbon","des bonbons","des bonbone","des bonbonnes"],a:1,why:"Au pluriel, on écrit : des bonbons."},
+  {q:"Les enfants regardent les fantômes. Ils ___ regardent.",hint:"فارسی: ضمیر مفعولی مستقیم جمع را انتخاب کن.",o:["lui","leur","les","la"],a:2,why:"« Les » remplace un complément d’objet direct pluriel."},
+  {q:"Quel connecteur exprime une opposition ?",hint:"فارسی: کدام کلمه معنی «اما» می‌دهد؟",o:["Parce que","Mais","Puis","Donc"],a:1,why:"« Mais » exprime une opposition."},
+  {q:"Complète : Si la luciole brille, la citrouille ___ magique.",hint:"فارسی: فعل مناسب برای «کدو جادویی است» را انتخاب کن.",o:["est","sont","as","avons"],a:0,why:"Citrouille est singulier : elle est magique."}
+ ]
+};
 
-/* Score and activity completion */
-let totalScore = 0;
-const completedActivities = new Set();
+let level="a1",index=0,score=0,streak=0,locked=false;
+const $=id=>document.getElementById(id);
 
-function addScore(points) {
-  totalScore += points;
-  document.getElementById("score").textContent = totalScore;
-}
-function completeActivity(name) {
-  completedActivities.add(name);
-  document.getElementById("completed").textContent = completedActivities.size;
-}
-
-/* Quiz — A1/A2 */
-const questions = [
-  {
-    q:"Qu’est-ce que Dino achète ?",
-    answers:["Une énorme citrouille","Un petit gâteau","Un chapeau bleu","Un ballon"],
-    correct:0,
-    explain:"Bravo ! Dino achète une énorme citrouille."
-  },
-  {
-    q:"Où est-ce que Dino pose la citrouille ?",
-    answers:["Sur le lit","Sur la table","Dans le jardin","Sous la chaise"],
-    correct:1,
-    explain:"Exact ! Il pose la citrouille sur la table."
-  },
-  {
-    q:"Que dessine Dino sur la citrouille ?",
-    answers:["Des fleurs","Un chat","Deux yeux et un sourire","Une maison"],
-    correct:2,
-    explain:"Très bien ! Il lui fait deux yeux et un sourire."
-  },
-  {
-    q:"Quel petit animal lumineux aide Dino ?",
-    answers:["Une abeille","Une luciole","Une fourmi","Une coccinelle"],
-    correct:1,
-    explain:"Oui ! Une luciole est un petit insecte lumineux."
-  },
-  {
-    q:"Que se passe-t-il à minuit ?",
-    answers:["La citrouille disparaît et se met à marcher","Dino part à l’école","Il neige dans la maison","La table tombe"],
-    correct:0,
-    explain:"Super ! À minuit, la citrouille se met à marcher et disparaît."
-  }
-];
-
-let quizIndex = 0;
-let quizAnswered = false;
-let quizFinished = false;
-let quizScore = 0;
-
-const questionText = document.getElementById("questionText");
-const questionNumber = document.getElementById("questionNumber");
-const answerOptions = document.getElementById("answerOptions");
-const quizFeedback = document.getElementById("quizFeedback");
-const nextQuestion = document.getElementById("nextQuestion");
-const quizProgress = document.getElementById("quizProgress");
-const quizBadge = document.getElementById("quizBadge");
-
-function renderQuestion() {
-  const q = questions[quizIndex];
-  quizAnswered = false;
-  questionText.textContent = q.q;
-  questionNumber.textContent = `Question ${quizIndex + 1} sur ${questions.length}`;
-  quizProgress.style.width = `${quizIndex / questions.length * 100}%`;
-  quizFeedback.textContent = "";
-  nextQuestion.disabled = true;
-  nextQuestion.textContent = quizIndex === questions.length - 1
-    ? "Voir mon résultat 🏆" : "Question suivante →";
-  answerOptions.replaceChildren();
-
-  q.answers.forEach((answer, index) => {
-    const button = document.createElement("button");
-    button.className = "option";
-    button.type = "button";
-    button.textContent = answer;
-    button.addEventListener("click", () => chooseAnswer(index, button));
-    answerOptions.appendChild(button);
+function renderQuestion(){
+  const list=questions[level],q=list[index];
+  locked=false;
+  $("quizBody").classList.remove("hidden");$("result").classList.add("hidden");
+  $("counter").textContent=`Question ${index+1} / ${list.length}`;
+  $("score").textContent=`🏆 Score : ${score}`;
+  $("progress").style.width=(index/list.length*100)+"%";
+  $("qlevel").textContent=level==="a1"?"NIVEAU A1":"NIVEAU A2";
+  $("qtext").textContent=q.q;$("hint").textContent=q.hint;
+  $("feedback").textContent="";$("next").disabled=true;
+  $("next").textContent=index===list.length-1?"Voir le résultat →":"Question suivante →";
+  const box=$("answers");box.replaceChildren();
+  q.o.forEach((option,i)=>{
+    const b=document.createElement("button");
+    b.type="button";b.className="answer";b.textContent=option;
+    b.addEventListener("click",()=>answerQuestion(i,b));
+    box.appendChild(b);
   });
 }
-
-function chooseAnswer(index, button) {
-  if (quizAnswered || quizFinished) return;
-  quizAnswered = true;
-
-  const q = questions[quizIndex];
-  const buttons = [...answerOptions.querySelectorAll("button")];
-  buttons.forEach((b, i) => {
-    b.disabled = true;
-    if (i === q.correct) b.classList.add("correct");
-  });
-
-  if (index === q.correct) {
-    quizScore++;
-    addScore(10);
-    quizFeedback.textContent = "✅ " + q.explain;
-    quizFeedback.style.color = "var(--green)";
-    candyRain();
-  } else {
-    button.classList.add("wrong");
-    quizFeedback.textContent = "💡 Pas tout à fait. " + q.explain;
-    quizFeedback.style.color = "var(--gold)";
+function answerQuestion(choice,button){
+  if(locked)return;
+  locked=true;
+  const q=questions[level][index];
+  const buttons=[...$("answers").querySelectorAll(".answer")];
+  buttons.forEach(b=>b.disabled=true);
+  if(choice===q.a){
+    button.classList.add("correct");score+=10;streak++;
+    $("feedback").textContent="✨ Bravo ! Bonne réponse ! +10 points. "+q.why;
+    $("feedback").style.color="var(--green)";
+    celebrate();
+  }else{
+    button.classList.add("wrong");buttons[q.a].classList.add("correct");streak=0;
+    $("feedback").textContent="💜 Pas tout à fait. Bonne réponse : "+q.o[q.a]+". "+q.why;
+    $("feedback").style.color="var(--red)";
   }
-
-  nextQuestion.disabled = false;
-  quizProgress.style.width = `${(quizIndex + 1) / questions.length * 100}%`;
+  $("score").textContent=`🏆 Score : ${score}`;
+  $("streak").textContent=`🔥 Série : ${streak}`;
+  $("progress").style.width=((index+1)/questions[level].length*100)+"%";
+  $("next").disabled=false;
 }
-
-document.getElementById("listenQuestion").addEventListener("click", () => {
-  FrenchSpeech.speak(questions[quizIndex].q);
+function finishQuiz(){
+  $("quizBody").classList.add("hidden");$("result").classList.remove("hidden");
+  const total=questions[level].length,correct=score/10;
+  $("resultEmoji").textContent=correct===total?"🏆":correct>=4?"🎉":"🌱";
+  $("resultTitle").textContent=correct===total?"Fantastique !":correct>=4?"Bravo, continue !":"Bon début !";
+  $("resultText").textContent=`Tu as obtenu ${score} points sur ${total*10}. Tu as ${correct} bonne(s) réponse(s) sur ${total}.`;
+  $("counter").textContent="Défi terminé !";$("progress").style.width="100%";
+}
+function startQuiz(newLevel=level){
+  level=newLevel;index=0;score=0;streak=0;locked=false;
+  document.querySelectorAll(".level").forEach(b=>b.classList.toggle("active",b.dataset.level===level));
+  $("streak").textContent="🔥 Série : 0";renderQuestion();
+}
+document.querySelectorAll(".level").forEach(b=>b.addEventListener("click",()=>startQuiz(b.dataset.level)));
+$("next").addEventListener("click",()=>{
+  if(!locked)return;
+  if(index<questions[level].length-1){index++;renderQuestion();}
+  else finishQuiz();
 });
-
-nextQuestion.addEventListener("click", () => {
-  if (!quizAnswered || quizFinished) return;
-
-  if (quizIndex < questions.length - 1) {
-    quizIndex++;
-    renderQuestion();
-    return;
-  }
-
-  quizFinished = true;
-  nextQuestion.disabled = true;
-  questionNumber.textContent = "Défi terminé !";
-  questionText.textContent = `Ton résultat : ${quizScore} / ${questions.length}`;
-  answerOptions.replaceChildren();
-
-  const message = quizScore >= 4
-    ? "🏅 Bravo ! Tu es un champion d’Halloween !"
-    : quizScore >= 2
-      ? "🍬 Bien joué ! Réessaie pour gagner encore plus de points."
-      : "🎃 Continue à pratiquer : tu vas progresser !";
-
-  quizFeedback.textContent = message;
-  quizBadge.classList.toggle("show", quizScore >= 4);
-  completeActivity("quiz");
-  if (quizScore >= 4) leafRain();
-});
-
-document.getElementById("restartQuiz").addEventListener("click", () => {
-  quizIndex = 0;
-  quizAnswered = false;
-  quizFinished = false;
-  quizScore = 0;
-  quizBadge.classList.remove("show");
-  renderQuestion();
-});
+$("restartQuiz").addEventListener("click",()=>startQuiz(level));
+$("listenQ").addEventListener("click",()=>speakFrench(questions[level][index].q));
 
 /* Pumpkin decoration */
-const eyeChoice = document.getElementById("eyeChoice");
-const mouthChoice = document.getElementById("mouthChoice");
-const accessoryChoice = document.getElementById("accessoryChoice");
-const eyes = document.getElementById("eyes");
-const mouth = document.getElementById("mouth");
-const accessory = document.getElementById("accessory");
-const glasses = document.getElementById("glasses");
-const glow = document.getElementById("glow");
-const decorFeedback = document.getElementById("decorFeedback");
-
-function makeSvg(tag, attrs) {
-  const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
-  Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
-  return el;
+let pumpkin={eye:"Round",mouth:"Smile",accessory:"none",firefly:true};
+function chooseOption(container,key){
+  document.querySelectorAll("#"+container+" .opt").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      pumpkin[key]=btn.dataset[key.toLowerCase()];
+      document.querySelectorAll("#"+container+" .opt").forEach(b=>b.classList.toggle("active",b===btn));
+      updatePumpkin();
+    });
+  });
 }
-
-function decoratePumpkin() {
-  eyes.replaceChildren();
-  mouth.replaceChildren();
-  accessory.style.display = "none";
-  glasses.style.display = "none";
-  glow.style.display = "none";
-
-  if (eyeChoice.value === "triangle") {
-    eyes.append(
-      makeSvg("path",{d:"M65 104 L91 82 L98 116Z",fill:"#24152a",stroke:"#6e321f","stroke-width":"2"}),
-      makeSvg("path",{d:"M145 116 L152 82 L178 104Z",fill:"#24152a",stroke:"#6e321f","stroke-width":"2"})
-    );
-  } else if (eyeChoice.value === "round") {
-    eyes.append(
-      makeSvg("circle",{cx:"82",cy:"103",r:"15",fill:"#24152a"}),
-      makeSvg("circle",{cx:"158",cy:"103",r:"15",fill:"#24152a"})
-    );
-  } else {
-    eyes.append(
-      makeSvg("path",{d:"M62 104 Q80 84 100 104",fill:"none",stroke:"#24152a","stroke-width":"8","stroke-linecap":"round"}),
-      makeSvg("path",{d:"M140 104 Q160 84 180 104",fill:"none",stroke:"#24152a","stroke-width":"8","stroke-linecap":"round"})
-    );
-  }
-
-  if (mouthChoice.value === "smile") {
-    mouth.append(makeSvg("path",{d:"M70 145 Q120 192 170 145 Q145 204 120 187 Q95 204 70 145Z",fill:"#24152a",stroke:"#6e321f","stroke-width":"3"}));
-  } else if (mouthChoice.value === "zigzag") {
-    mouth.append(makeSvg("path",{d:"M70 151 L89 139 L107 154 L124 139 L143 154 L170 143 L163 173 L145 184 L125 173 L106 185 L85 173Z",fill:"#24152a",stroke:"#6e321f","stroke-width":"3"}));
-  } else {
-    mouth.append(makeSvg("ellipse",{cx:"120",cy:"163",rx:"18",ry:"25",fill:"#24152a",stroke:"#6e321f","stroke-width":"3"}));
-  }
-
-  if (accessoryChoice.value === "hat") {
-    accessory.style.display = "";
-  } else if (accessoryChoice.value === "glasses") {
-    glasses.style.display = "";
-  } else if (accessoryChoice.value === "glow") {
-    glow.style.display = "";
-  }
-
-  decorFeedback.textContent = "✨ Ta citrouille est prête !";
-  decorFeedback.style.color = "var(--gold)";
-  completeActivity("decor");
+function updatePumpkin(){
+  ["Round","Triangle","Star","Sleep"].forEach(x=>$("eye"+x).style.display=pumpkin.eye===x?"":"none");
+  ["Smile","Small","Round","Teeth"].forEach(x=>$("mouth"+x).style.display=pumpkin.mouth===x?"":"none");
+  ["hat","glasses","bow"].forEach(x=>$(x).style.display=pumpkin.accessory===x?"":"none");
+  $("firefly").style.display=pumpkin.firefly?"":"none";
+  $("fireflyToggle").setAttribute("aria-pressed",String(pumpkin.firefly));
+  $("fireflyText").textContent=pumpkin.firefly?"✨ Luciole allumée":"🌙 Luciole éteinte";
+  $("pumpkinCaption").textContent=pumpkin.firefly?"Ma citrouille magique et sa luciole ✨":"Ma citrouille d’Halloween 🎃";
 }
-
-document.getElementById("applyDecor").addEventListener("click", decoratePumpkin);
-document.getElementById("sayDecor").addEventListener("click", () => {
-  const words = {
-    triangle:"les yeux triangulaires",
-    round:"les yeux ronds",
-    sleepy:"les yeux malicieux",
-    smile:"un sourire",
-    zigzag:"une bouche en zigzag",
-    o:"une bouche ronde",
-    hat:"un chapeau magique",
-    glasses:"des lunettes",
-    glow:"une luciole lumineuse",
-    none:"aucun accessoire"
-  };
-  FrenchSpeech.speak(
-    "Les yeux : " + words[eyeChoice.value] +
-    ". La bouche : " + words[mouthChoice.value] +
-    ". L'accessoire : " + words[accessoryChoice.value] + "."
-  );
+chooseOption("eyesOptions","eye");
+chooseOption("mouthOptions","mouth");
+chooseOption("accessoryOptions","accessory");
+$("fireflyToggle").addEventListener("click",()=>{pumpkin.firefly=!pumpkin.firefly;updatePumpkin();});
+$("resetPumpkin").addEventListener("click",()=>{
+  pumpkin={eye:"Round",mouth:"Smile",accessory:"none",firefly:true};
+  document.querySelectorAll("#eyesOptions .opt").forEach(b=>b.classList.toggle("active",b.dataset.eye==="Round"));
+  document.querySelectorAll("#mouthOptions .opt").forEach(b=>b.classList.toggle("active",b.dataset.mouth==="Smile"));
+  document.querySelectorAll("#accessoryOptions .opt").forEach(b=>b.classList.toggle("active",b.dataset.accessory==="none"));
+  updatePumpkin();showToast("🎃 Ta citrouille est prête !");
 });
 
-/* Memory game */
-const memoryPairs = [
-  {word:"citrouille",emoji:"🎃"},
-  {word:"fantôme",emoji:"👻"},
-  {word:"chauve-souris",emoji:"🦇"},
-  {word:"luciole",emoji:"✨"}
+/* Memory matching game */
+const vocab=[
+ {id:"pumpkin",emoji:"🎃",fr:"Une citrouille",fa:"کدو تنبل"},
+ {id:"ghost",emoji:"👻",fr:"Un fantôme",fa:"روح"},
+ {id:"bat",emoji:"🦇",fr:"Une chauve-souris",fa:"خفاش"},
+ {id:"spider",emoji:"🕷️",fr:"Une araignée",fa:"عنکبوت"},
+ {id:"candy",emoji:"🍬",fr:"Un bonbon",fa:"آبنبات"},
+ {id:"witch",emoji:"🧙",fr:"Une sorcière",fa:"جادوگر"}
 ];
-let memoryDeck = [];
-let selectedCards = [];
-let matchedPairs = 0;
-let memoryLocked = false;
-let memoryTimer = null;
-let memoryGameFinished = false;
-
-const memoryGrid = document.getElementById("memoryGrid");
-const memoryFeedback = document.getElementById("memoryFeedback");
-const memoryStatus = document.getElementById("memoryStatus");
-const memoryBadge = document.getElementById("memoryBadge");
-
-function shuffle(array) {
-  const result = array.slice();
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-  return result;
+let first=null,second=null,boardLocked=false,pairsFound=0,memPoints=0,moveCount=0,roundId=0;
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+  return arr;
 }
-
-function startMemory() {
-  if (memoryTimer) {
-    clearTimeout(memoryTimer);
-    memoryTimer = null;
+function drawCard(card){
+  const b=document.createElement("button");
+  b.type="button";b.className="mem";b.dataset.uid=card.uid;
+  b.setAttribute("aria-label","Carte cachée");b.textContent="✦";
+  b.addEventListener("click",()=>flipCard(b,card));
+  $("memoryGrid").appendChild(b);
+}
+function reveal(b,card){
+  b.classList.add("revealed");
+  b.setAttribute("aria-label",card.type==="emoji"?card.item.fr:card.item.fa);
+  if(card.type==="emoji")b.innerHTML=`<span class="content"><span class="emoji">${card.item.emoji}</span></span>`;
+  else b.innerHTML=`<span class="content">${card.item.fr}</span>`;
+}
+function conceal(b){b.classList.remove("revealed");b.setAttribute("aria-label","Carte cachée");b.textContent="✦";}
+function flipCard(b,card){
+  if(boardLocked||b.classList.contains("revealed")||b.classList.contains("matched"))return;
+  reveal(b,card);
+  if(!first){first={b,card};return;}
+  second={b,card};moveCount++;$("moves").textContent=`👆 Coups : ${moveCount}`;
+  if(first.card.pair===second.card.pair){
+    b.classList.add("matched");first.b.classList.add("matched");
+    b.disabled=true;first.b.disabled=true;
+    pairsFound++;memPoints+=20;
+    $("pairs").textContent=`🧩 Paires : ${pairsFound} / ${vocab.length}`;
+    $("memScore").textContent=`🏆 Score : ${memPoints}`;
+    $("memFeedback").textContent=`Bravo ! ${card.item.fr} = ${card.item.fa} ✨`;
+    addVocab(card.item);
+    first=null;second=null;
+    if(pairsFound===vocab.length){
+      $("memFeedback").textContent=`🏆 Fantastique ! Toutes les paires trouvées en ${moveCount} coups !`;
+      celebrate();
+    }
+  }else{
+    boardLocked=true;const thisRound=roundId;
+    $("memFeedback").textContent="Essaie encore ! Regarde bien les cartes.";
+    const a=first.b,c=second.b;
+    setTimeout(()=>{
+      if(thisRound!==roundId)return;
+      conceal(a);conceal(c);first=null;second=null;boardLocked=false;
+    },850);
   }
-  memoryDeck = shuffle(memoryPairs.flatMap((pair, pairId) => [
-    {pairId,word:pair.word,emoji:pair.emoji,type:"image"},
-    {pairId,word:pair.word,emoji:pair.emoji,type:"word"}
+}
+function addVocab(item){
+  $("vocabArea").classList.remove("hidden");
+  if($("vocabList").querySelector(`[data-vocab="${item.id}"]`))return;
+  const row=document.createElement("div");row.className="vocab";row.dataset.vocab=item.id;
+  const emoji=document.createElement("span");emoji.className="ve";emoji.textContent=item.emoji;
+  const words=document.createElement("div");words.className="words";
+  const strong=document.createElement("strong");strong.textContent=item.fr;
+  const small=document.createElement("small");small.textContent=item.fa;
+  words.append(strong,small);
+  const listen=document.createElement("button");listen.className="listen";listen.type="button";listen.textContent="🔊";
+  listen.setAttribute("aria-label","Écouter "+item.fr);
+  listen.addEventListener("click",()=>speakFrench(item.fr));
+  row.append(emoji,words,listen);$("vocabList").appendChild(row);
+  speakFrench(item.fr);
+}
+function restartMemory(){
+  roundId++;first=null;second=null;boardLocked=false;pairsFound=0;memPoints=0;moveCount=0;
+  $("memoryGrid").replaceChildren();$("vocabList").replaceChildren();$("vocabArea").classList.add("hidden");
+  $("pairs").textContent=`🧩 Paires : 0 / ${vocab.length}`;
+  $("memScore").textContent="🏆 Score : 0";$("moves").textContent="👆 Coups : 0";
+  $("memFeedback").textContent="Trouve les six paires !";
+  const deck=shuffle(vocab.flatMap(item=>[
+    {uid:item.id+"-emoji",pair:item.id,type:"emoji",item},
+    {uid:item.id+"-word",pair:item.id,type:"word",item}
   ]));
-  selectedCards = [];
-  matchedPairs = 0;
-  memoryLocked = false;
-  memoryGameFinished = false;
-  memoryFeedback.textContent = "";
-  memoryBadge.classList.remove("show");
-  renderMemory();
+  deck.forEach(drawCard);
 }
+$("restartMemory").addEventListener("click",restartMemory);
 
-function renderMemory() {
-  memoryGrid.replaceChildren();
-
-  memoryDeck.forEach((card, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "memory-card";
-    button.setAttribute("aria-label", "Carte cachée");
-
-    const isMatched = card.matched === true;
-    const isRevealed = card.revealed === true;
-
-    if (isMatched || isRevealed) {
-      button.classList.add(isMatched ? "matched" : "revealed");
-      const symbol = document.createElement("span");
-      symbol.textContent = card.type === "image" ? card.emoji : "🔤";
-      const word = document.createElement("span");
-      word.className = "word";
-      word.textContent = card.word;
-      button.append(symbol, word);
-      button.setAttribute("aria-label", card.word);
-    } else {
-      button.textContent = "❔";
-    }
-
-    button.disabled = isMatched || isRevealed || memoryLocked || memoryGameFinished;
-    button.addEventListener("click", () => flipMemory(index));
-    memoryGrid.appendChild(button);
-  });
-
-  memoryStatus.textContent = `Paires trouvées : ${matchedPairs} sur ${memoryPairs.length}`;
-}
-
-function flipMemory(index) {
-  if (memoryLocked || memoryGameFinished) return;
-  const card = memoryDeck[index];
-  if (card.matched || card.revealed) return;
-
-  card.revealed = true;
-  selectedCards.push(index);
-  renderMemory();
-
-  if (selectedCards.length !== 2) return;
-
-  const [firstIndex, secondIndex] = selectedCards;
-  const first = memoryDeck[firstIndex];
-  const second = memoryDeck[secondIndex];
-
-  if (first.pairId === second.pairId && first.type !== second.type) {
-    first.matched = true;
-    second.matched = true;
-    selectedCards = [];
-    matchedPairs++;
-    addScore(15);
-    memoryFeedback.textContent = `✅ Bravo ! ${first.word} !`;
-    memoryFeedback.style.color = "var(--green)";
-    renderMemory();
-    FrenchSpeech.speak(first.word);
-
-    if (matchedPairs === memoryPairs.length) {
-      memoryGameFinished = true;
-      memoryBadge.classList.add("show");
-      memoryFeedback.textContent = "🏆 Toutes les paires sont trouvées !";
-      completeActivity("memory");
-      leafRain();
-      renderMemory();
-    }
-  } else {
-    memoryLocked = true;
-    memoryFeedback.textContent = "🔎 Essaie encore !";
-    memoryFeedback.style.color = "var(--gold)";
-    memoryTimer = window.setTimeout(() => {
-      first.revealed = false;
-      second.revealed = false;
-      selectedCards = [];
-      memoryLocked = false;
-      memoryTimer = null;
-      renderMemory();
-    }, 950);
-  }
-}
-
-document.getElementById("restartMemory").addEventListener("click", startMemory);
-
-/* Gentle celebration effects */
-function createRain(symbols, count) {
-  for (let i = 0; i < count; i++) {
-    const item = document.createElement("div");
-    item.className = "leaf";
-    item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-    item.style.left = `${Math.random() * 100}vw`;
-    item.style.setProperty("--drift", `${Math.random() * 160 - 80}px`);
-    item.style.animationDuration = `${2.2 + Math.random() * 2.2}s`;
-    document.body.appendChild(item);
-    window.setTimeout(() => item.remove(), 4800);
-  }
-}
-function candyRain() {
-  createRain(["🍬","🍭","🍬","🍂"],16);
-}
-function leafRain() {
-  createRain(["🍂","🍁","✨","🎃"],20);
-}
-
-/* Initialize */
-renderQuestion();
-decoratePumpkin();
-startMemory();
+/* Initial state */
+startQuiz("a1");
+updatePumpkin();
+restartMemory();
 </script>
 </body>
 </html>
